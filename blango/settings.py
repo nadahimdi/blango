@@ -28,7 +28,7 @@ class Dev(Configuration):
 
 # SECURITY WARNING: don't run with debug turned on in production!
  DEBUG = True
-
+ 
  ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
  X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
  CSRF_COOKIE_SAMESITE = None
@@ -51,8 +51,10 @@ class Dev(Configuration):
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blango_auth',
+    'blog',
  ]
+  
 
  MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -136,6 +138,7 @@ class Dev(Configuration):
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
  STATIC_URL = '/static/'
+ AUTH_USER_MODEL = "blango_auth.User"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -185,6 +188,7 @@ class Dev(Configuration):
       'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
       'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
   ]
+ 
  
 class Prod(Dev):
   DEBUG = False
