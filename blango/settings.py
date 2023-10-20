@@ -42,6 +42,7 @@ class Dev(Configuration):
 # Application definition
 
  INSTALLED_APPS = [
+    "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
     'django.contrib.admin',
@@ -54,6 +55,7 @@ class Dev(Configuration):
  ]
 
  MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,6 +64,7 @@ class Dev(Configuration):
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
  ]
+ INTERNAL_IPS = ["192.168.10.226"]
 
  ROOT_URLCONF = 'blango.urls'
 
@@ -182,6 +185,7 @@ class Dev(Configuration):
       'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
       'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
   ]
+ 
 class Prod(Dev):
   DEBUG = False
   SECRET_KEY = values.SecretValue()
